@@ -22,7 +22,7 @@ The **learning goals** for this project is:
 Term: Fall 2023
 
 + Team #2
-+ **Projec title**: + Team members
++ Team members:
 	+ Spardha Sharma (ss6343)
 	+ Daniel Thomas Luce (dtl2129)
 	+ Lia Cho (lc3683)
