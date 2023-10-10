@@ -31,7 +31,7 @@ program_area_descriptions2 <- list(
 )
 
 ui2 <- fluidPage(
-  titlePanel("Graph Viewer 2"),  # Updated title
+  titlePanel("Most Common Structure Types by FEMA Program"),  # Updated title
   sidebarLayout(
     sidebarPanel(
       selectInput(

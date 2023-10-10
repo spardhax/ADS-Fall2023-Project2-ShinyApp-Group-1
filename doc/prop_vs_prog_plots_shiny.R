@@ -27,11 +27,11 @@ program_area_descriptions <- list(
   National Flood Insurance Program",
   "SRL" = "The Severe Repetetive Loss (SRL) program seeks to eliminate or reduce the
   damage to residential property and the disruption to life caused by repeated flooding", 
-  "All" = "Heat Map of All Programs by Propert Action Type"
+  "All" = "Heat Map of All Programs by Property Action Type"
 )
 
 ui1 <- fluidPage(
-  titlePanel("Graph Viewer"),
+  titlePanel("Most Common Property Actions by FEMA Program"),
   sidebarLayout(
     sidebarPanel(
       selectInput(

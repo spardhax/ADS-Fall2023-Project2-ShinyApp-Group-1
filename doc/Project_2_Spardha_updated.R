@@ -270,6 +270,10 @@ ggsave("statewise_mitigated_properties.jpeg", path = "../doc/figs/",
 
 # note this can be an interactive time series plot on r shiny with various filters like state, programArea, structureType etc
 
+# Median Project Funding by Year and State
+
+med_fund_plots <- list()
+
 average_funding_per_year <- data %>%
   group_by(programFy) %>%
   summarise(average_amount = median(actualAmountPaid, na.rm = TRUE))
@@ -278,12 +282,13 @@ average_funding_per_year <- data %>%
 filtered_funding_per_year <- average_funding_per_year[!is.na(average_funding_per_year$average_amount),]
 
 # Plotting the time series without missing values
-ggplot(filtered_funding_per_year, aes(x = programFy, y = average_amount)) +
+med_fund_plots[["US"]]<- ggplot(filtered_funding_per_year, aes(x = programFy, y = average_amount)) +
   geom_line() +
   labs(x = "Year", y = "Median Actual Amount Paid", title = "Median Funding Received by Project Per Year") +
   theme_minimal()
 
-ggsave("median_funding_by_project.png", path = "../doc/figs")
+ggsave("median_funding_by_project.png", plot = med_fund_plots$US,
+       path = "../doc/figs")
 
 plot_ly(data = filtered_funding_per_year, x = ~programFy, y = ~average_amount, type = 'scatter', mode = 'lines') %>%
   layout(
@@ -292,4 +297,27 @@ plot_ly(data = filtered_funding_per_year, x = ~programFy, y = ~average_amount, t
     title = "Median Funding Received by Project Per Year",
     showlegend = FALSE
   )
+
+state_average_funding_per_year <- data %>%
+  group_by(programFy, state) %>%
+  summarise(average_amount = median(actualAmountPaid, na.rm = TRUE))
+
+filtered_state_funding_per_year <- 
+  state_average_funding_per_year[!is.na(state_average_funding_per_year$average_amount),]
+
+states <- unique(filtered_state_funding_per_year$state)
+
+for(i in states){
+  state_avg <- filter(filtered_state_funding_per_year, state == i)
+  
+  med_fund_plots[[i]] <- ggplot(state_avg, 
+                                aes(x = programFy, y = average_amount)) + 
+    geom_line() +
+    labs(x = "Year", y = "Median Actual Amount Paid", 
+         title = paste0("Median Funding Received by Project Per Year in ", i)) +
+    theme_minimal()
+}
+
+saveRDS(med_fund_plots, "../doc/med_fund_plots.rds")
+
 
