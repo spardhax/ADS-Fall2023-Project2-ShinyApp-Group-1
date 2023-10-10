@@ -212,7 +212,8 @@ foundations <- data %>%
   summarise(total_amount = sum(actualAmountPaid, na.rm = TRUE))
 
 
-foundations$foundationType <- factor(foundations$foundationType, levels = foundations$foundationType[order(-foundations$total_amount)])
+foundations$foundationType <- factor(foundations$foundationType, 
+                                     levels = foundations$foundationType[order(-foundations$total_amount)])
 
 ggplot(foundations, aes( x = total_amount, y = foundationType)) +
   geom_bar(stat = "identity") +
@@ -222,6 +223,7 @@ ggplot(foundations, aes( x = total_amount, y = foundationType)) +
   scale_x_continuous(labels = scales::comma_format(scale = 1e-6, accuracy = 1))+
   theme(legend.position = "none", axis.text.x = element_text(angle = 30, hjust = 1))
 
+ggsave("foundation_type.png", path = "../doc/figs/")
 
 plot_ly(
   data = foundations,
@@ -254,12 +256,15 @@ state_data$state <- tolower(state_data$state)
 merged <- merge(state_map, state_data, by.x = "region", by.y = "state")
 
 # note this can be an interactive map on r shiny 
-ggplot(merged, aes(x = long, y = lat, group = group, fill = total_amount)) +
+ggplot(merged, aes(x = long, y = lat, group = group, fill = total_amount/1000000000)) +
   geom_polygon() +
-  scale_fill_gradient(low = "yellow", high = "red") +
-  labs(title = "Statewise Concentration of Mitigated Properties") +
+  scale_fill_gradient(low = "yellow", high = "red", 
+                      name = "Total Funding (Billion USD)") +
+  labs(title = "Statewise Funding for Mitigation Purposes") +
   theme_minimal()
 
+ggsave("statewise_mitigated_properties.jpeg", path = "../doc/figs/", 
+       width = 3.25, height = 2.18)
 
 # Question 5: How has the average actual amount amount paid to the property owner for mitigation efforts changed over the years?
 
@@ -267,7 +272,7 @@ ggplot(merged, aes(x = long, y = lat, group = group, fill = total_amount)) +
 
 average_funding_per_year <- data %>%
   group_by(programFy) %>%
-  summarise(average_amount = mean(actualAmountPaid, na.rm = TRUE))
+  summarise(average_amount = median(actualAmountPaid, na.rm = TRUE))
 
 # filtering out rows with missing average_amount
 filtered_funding_per_year <- average_funding_per_year[!is.na(average_funding_per_year$average_amount),]
@@ -275,14 +280,16 @@ filtered_funding_per_year <- average_funding_per_year[!is.na(average_funding_per
 # Plotting the time series without missing values
 ggplot(filtered_funding_per_year, aes(x = programFy, y = average_amount)) +
   geom_line() +
-  labs(x = "Year", y = "Average Actual Amount Paid", title = "Average Funding Received by Tenant Per Year") +
+  labs(x = "Year", y = "Median Actual Amount Paid", title = "Median Funding Received by Project Per Year") +
   theme_minimal()
+
+ggsave("median_funding_by_project.png", path = "../doc/figs")
 
 plot_ly(data = filtered_funding_per_year, x = ~programFy, y = ~average_amount, type = 'scatter', mode = 'lines') %>%
   layout(
     xaxis = list(title = "Year"),
-    yaxis = list(title = "Average Actual Amount Paid"),
-    title = "Average Funding Received by Tenant Per Year",
+    yaxis = list(title = "Median Actual Amount Paid"),
+    title = "Median Funding Received by Project Per Year",
     showlegend = FALSE
   )
 

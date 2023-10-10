@@ -10,8 +10,8 @@ output:
 
 ```{r, warning=FALSE, message=FALSE}
 library(readr)
-hma <- read_csv("HazardMitigationAssistanceProjects(cleaned).csv")
-hma_prop <- read_csv("HazardMitigationAssistanceMitigatedProperties_cleaned.csv")
+hma <- read_csv("../data/HazardMitigationAssistanceProjects(cleaned).csv")
+hma_prop <- read_csv("../data/HazardMitigationAssistanceMitigatedProperties_cleaned.csv")
 ```
 
 ```{r, state_heatmap, warning=FALSE, message=FALSE}
