@@ -263,8 +263,7 @@ ggplot(merged, aes(x = long, y = lat, group = group, fill = total_amount/1000000
   labs(title = "Statewise Funding for Mitigation Purposes") +
   theme_minimal()
 
-ggsave("statewise_mitigated_properties.jpeg", path = "../doc/figs/", 
-       width = 3.25, height = 2.18)
+ggsave("statewise_mitigated_properties.jpeg", path = "../doc/figs/")
 
 # Question 5: How has the average actual amount amount paid to the property owner for mitigation efforts changed over the years?
 

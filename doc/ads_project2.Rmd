@@ -80,7 +80,7 @@ data_pa = sqldf('SELECT propertyAction, count(*) as count FROM hma_prop GROUP BY
 
 pa = ggplot(data_pa, aes(x = propertyAction, y = count, fill = propertyAction)) +
   geom_bar(stat = "identity") +
-  labs(x = "State", y = "Count", title = "Bar Plot of Property Action") +
+  labs(x = "Property Action", y = "Number of Projects", title = "Number of Projects by Property Action") +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
