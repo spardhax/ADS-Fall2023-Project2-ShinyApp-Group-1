@@ -10,7 +10,7 @@ library(sf)
 library(scales)
 
 # reading the file
-data<-read_csv('~/Downloads/HazardMitigationAssistanceMitigatedProperties_cleaned.csv')
+data <- read.csv("../data/HazardMitigationAssistanceMitigatedProperties_cleaned.csv")
 
 View(data)
 
@@ -30,45 +30,54 @@ View(property_actions_vs_program_type)
 
 unique(property_actions_vs_program_type$programArea)
 
+prop_vs_prog_plots <- list()
+
 # Making bar charts for each program area type
 # note that this can be an interactive visualization on r shiny with  'programArea' as a filter
-ggplot(property_actions_vs_program_type[property_actions_vs_program_type$programArea == "BRIC", ], aes(x = reorder(propertyAction, -Count), y = Count)) +
+prop_vs_prog_plots[["BRIC"]]<-ggplot(property_actions_vs_program_type[property_actions_vs_program_type$programArea == "BRIC", ], 
+       aes(x = reorder(propertyAction, -Count), y = Count)) +
   geom_bar(stat = "identity", fill="purple") +
   labs(x = "Property Actions", y = "Count") +
   ggtitle("Top 5 Property Actions on BRIC Programs ")+
   theme(legend.position = "none", axis.text.x = element_text(angle = 30, hjust = 1))
 
-ggplot(property_actions_vs_program_type[property_actions_vs_program_type$programArea == "FMA", ], aes(x = reorder(propertyAction, -Count), y = Count)) +
+prop_vs_prog_plots[["FMA"]]<-ggplot(property_actions_vs_program_type[property_actions_vs_program_type$programArea == "FMA", ], 
+       aes(x = reorder(propertyAction, -Count), y = Count)) +
   geom_bar(stat = "identity", fill="magenta") +
   labs(x = "Property Actions", y = "Count") +
   ggtitle("Top 5 Property Actions on FMA Programs ")+
   theme(legend.position = "none", axis.text.x = element_text(angle = 30, hjust = 1))
 
-ggplot(property_actions_vs_program_type[property_actions_vs_program_type$programArea == "HMGP", ], aes(x = reorder(propertyAction, -Count), y = Count)) +
+prop_vs_prog_plots[["HMGP"]]<-ggplot(property_actions_vs_program_type[property_actions_vs_program_type$programArea == "HMGP", ], 
+       aes(x = reorder(propertyAction, -Count), y = Count)) +
   geom_bar(stat = "identity", fill="red") +
   labs(x = "Property Actions", y = "Count") +
   ggtitle("Top 5 Property Actions on HMGP Programs ")+
   theme(legend.position = "none", axis.text.x = element_text(angle = 30, hjust = 1))
 
-ggplot(property_actions_vs_program_type[property_actions_vs_program_type$programArea == "LPDM", ], aes(x = reorder(propertyAction, -Count), y = Count)) +
+prop_vs_prog_plots[["LPDM"]]<-ggplot(property_actions_vs_program_type[property_actions_vs_program_type$programArea == "LPDM", ], 
+       aes(x = reorder(propertyAction, -Count), y = Count)) +
   geom_bar(stat = "identity", fill="pink") +
   labs(x = "Property Actions", y = "Count") +
   ggtitle("Top 5 Property Actions on LPDM Programs ")+
   theme(legend.position = "none", axis.text.x = element_text(angle = 30, hjust = 1))
 
-ggplot(property_actions_vs_program_type[property_actions_vs_program_type$programArea == "PDM", ], aes(x = reorder(propertyAction, -Count), y = Count)) +
+prop_vs_prog_plots[["PDM"]]<-ggplot(property_actions_vs_program_type[property_actions_vs_program_type$programArea == "PDM", ], 
+       aes(x = reorder(propertyAction, -Count), y = Count)) +
   geom_bar(stat = "identity", fill="orange") +
   labs(x = "Property Actions", y = "Count") +
   ggtitle("Top 5 Property Actions on PDM Programs ")+
   theme(legend.position = "none", axis.text.x = element_text(angle = 30, hjust = 1))
 
-ggplot(property_actions_vs_program_type[property_actions_vs_program_type$programArea == "RFC", ], aes(x = reorder(propertyAction, -Count), y = Count)) +
+prop_vs_prog_plots[["RFC"]]<-ggplot(property_actions_vs_program_type[property_actions_vs_program_type$programArea == "RFC", ], 
+       aes(x = reorder(propertyAction, -Count), y = Count)) +
   geom_bar(stat = "identity", fill="dark green") +
   labs(x = "Property Actions", y = "Count") +
   ggtitle("Top 5 Property Actions on RFC Programs ")+
   theme(legend.position = "none", axis.text.x = element_text(angle = 30, hjust = 1))
 
-ggplot(property_actions_vs_program_type[property_actions_vs_program_type$programArea == "SRL", ], aes(x = reorder(propertyAction, -Count), y = Count)) +
+prop_vs_prog_plots[["SRL"]]<-ggplot(property_actions_vs_program_type[property_actions_vs_program_type$programArea == "SRL", ], 
+       aes(x = reorder(propertyAction, -Count), y = Count)) +
   geom_bar(stat = "identity", fill="blue") +
   labs(x = "Property Actions", y = "Count") +
   ggtitle("Top 5 Property Actions on SRL Programs ")+
@@ -87,13 +96,15 @@ percentage_data<- data %>%
 
 percentage_data
 
-ggplot(percentage_data, aes(x = propertyAction, y = programArea, fill = Percentage)) +
+prop_vs_prog_plots[["All"]]<-ggplot(percentage_data, aes(x = propertyAction, y = programArea, fill = Percentage)) +
   geom_tile() +
   scale_fill_viridis_c(direction = -1) +
   labs(x = "Program Area", y = "Property Action", fill = "Percentage") +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
+
+saveRDS(prop_vs_prog_plots, "../doc/prop_vs_prog_plots.rds")
 
 plot_ly(data = percentage_data, 
         x = ~propertyAction, 
@@ -120,46 +131,47 @@ property_actions_vs_structure_type <- data %>%
   mutate(Rank = row_number()) %>%
   filter(Rank <= 5)
 
+prop_vs_struc_plots <- list()
 
 # Making bar charts for each program area type
 # note that this can be an interactive visualization on r shiny with  'programArea' as a filter
-ggplot(property_actions_vs_structure_type[property_actions_vs_structure_type$programArea == "BRIC", ], aes(x = reorder(structureType, -Count), y = Count)) +
+prop_vs_struc_plots[["BRIC"]]<-ggplot(property_actions_vs_structure_type[property_actions_vs_structure_type$programArea == "BRIC", ], aes(x = reorder(structureType, -Count), y = Count)) +
   geom_bar(stat = "identity", fill="purple") +
   labs(x = "Structure Type", y = "Count") +
   ggtitle("Top 5 Structure Types of BRIC Programs")+
   theme(legend.position = "none", axis.text.x = element_text(angle = 30, hjust = 1))
 
-ggplot(property_actions_vs_structure_type[property_actions_vs_structure_type$programArea == "FMA", ], aes(x = reorder(structureType, -Count), y = Count)) +
+prop_vs_struc_plots[["FMA"]]<-ggplot(property_actions_vs_structure_type[property_actions_vs_structure_type$programArea == "FMA", ], aes(x = reorder(structureType, -Count), y = Count)) +
   geom_bar(stat = "identity", fill="magenta") +
   labs(x = "Structure Type", y = "Count") +
   ggtitle("Top 5 Structure Types of FMA Programs")+
   theme(legend.position = "none", axis.text.x = element_text(angle = 30, hjust = 1))
 
-ggplot(property_actions_vs_structure_type[property_actions_vs_structure_type$programArea == "HMGP", ], aes(x = reorder(structureType, -Count), y = Count)) +
+prop_vs_struc_plots[["HMGP"]]<-ggplot(property_actions_vs_structure_type[property_actions_vs_structure_type$programArea == "HMGP", ], aes(x = reorder(structureType, -Count), y = Count)) +
   geom_bar(stat = "identity", fill="red") +
   labs(x = "Structure Type", y = "Count") +
   ggtitle("Top 5 Structure Types of HMGP Programs")+
   theme(legend.position = "none", axis.text.x = element_text(angle = 30, hjust = 1))
 
-ggplot(property_actions_vs_structure_type[property_actions_vs_structure_type$programArea == "LPDM", ], aes(x = reorder(structureType, -Count), y = Count)) +
+prop_vs_struc_plots[["LPDM"]]<-ggplot(property_actions_vs_structure_type[property_actions_vs_structure_type$programArea == "LPDM", ], aes(x = reorder(structureType, -Count), y = Count)) +
   geom_bar(stat = "identity", fill="pink") +
   labs(x = "Structure Type", y = "Count") +
   ggtitle("Top 5 Structure Types of LPDM Programs ")+
   theme(legend.position = "none", axis.text.x = element_text(angle = 30, hjust = 1))
 
-ggplot(property_actions_vs_structure_type[property_actions_vs_structure_type$programArea == "PDM", ], aes(x = reorder(structureType, -Count), y = Count)) +
+prop_vs_struc_plots[["PDM"]]<-ggplot(property_actions_vs_structure_type[property_actions_vs_structure_type$programArea == "PDM", ], aes(x = reorder(structureType, -Count), y = Count)) +
   geom_bar(stat = "identity", fill="orange") +
   labs(x = "Structure Type", y = "Count") +
   ggtitle("Top 5 Structure Types of PDM Programs")+
   theme(legend.position = "none", axis.text.x = element_text(angle = 30, hjust = 1))
 
-ggplot(property_actions_vs_structure_type[property_actions_vs_structure_type$programArea == "RFC", ], aes(x = reorder(structureType, -Count), y = Count)) +
+prop_vs_struc_plots[["RFC"]]<-ggplot(property_actions_vs_structure_type[property_actions_vs_structure_type$programArea == "RFC", ], aes(x = reorder(structureType, -Count), y = Count)) +
   geom_bar(stat = "identity", fill="dark green") +
   labs(x = "Structure Type", y = "Count") +
   ggtitle("Top 5 Structure Types of RFC Programs")+
   theme(legend.position = "none", axis.text.x = element_text(angle = 30, hjust = 1))
 
-ggplot(property_actions_vs_structure_type[property_actions_vs_structure_type$programArea == "SRL", ], aes(x = reorder(structureType, -Count), y = Count)) +
+prop_vs_struc_plots[["SRL"]]<-ggplot(property_actions_vs_structure_type[property_actions_vs_structure_type$programArea == "SRL", ], aes(x = reorder(structureType, -Count), y = Count)) +
   geom_bar(stat = "identity", fill="blue") +
   labs(x = "Structure Type", y = "Count") +
   ggtitle("Top 5 Structure Types of SRL Programs")+
@@ -173,11 +185,13 @@ structure_type_data<- data %>%
          Percentage = (Count / TotalCount) * 100)
 
 # Creating a pie chart that gives an overview of the most common structure types
-ggplot(structure_type_data, aes(x = "", y = Percentage, fill = structureType)) +
+prop_vs_struc_plots[["Total"]]<-ggplot(structure_type_data, aes(x = "", y = Percentage, fill = structureType)) +
   geom_bar(stat = "identity", width = 1) +
   coord_polar("y") +
   theme_void() +
   theme(legend.position = "bottom")
+
+saveRDS(prop_vs_struc_plots, "../doc/prop_vs_struc_plots.rds")
 
 plot_ly(
   data = structure_type_data,
