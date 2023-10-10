@@ -18,10 +18,10 @@ The **learning goals** for this project is:
 
 *The above general statement about project 2 can be removed once you are finished with your project. It is optional.
 
-## Project Title Lorem ipsum dolor sit amet
+##  Exploring Property Actions & Funding in Hazard Mitigation Projects in the US
 Term: Fall 2023
 
-+ Team #2
++ Team #1
 + Team members:
 	+ Spardha Sharma (ss6343)
 	+ Daniel Thomas Luce (dtl2129)
@@ -30,7 +30,18 @@ Term: Fall 2023
 	+ Chencan Zou (cz2675)
  	+ Puqi Song (ps3387)
 
-+ **Project summary**: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
++ **Project summary**: We examined data from the [Hazard Mitigation Assistance Projects](https://www.fema.gov/openfema-data-page/hazard-mitigation-assistance-projects-v3) & [Hazard Mitigation Assistance Mitigated Properties](https://www.fema.gov/openfema-data-page/hazard-mitigation-assistance-mitigated-properties-v3) datasets. Our objective was to learn about the property actions taken in US hazard mitigation projects. We looked at how these actions vary based on the type of hazard (like floods/earthquakes), property foundation (like slab on grade/elevation) and housing structure (residential/commercial). Additionally, we analyzed funding trends over the years and predicted future changes in the number of projects. We also conducted a detailed state-wise analysis to gain localized insights. Our analysis aims to answer the following questions:-
+
+  +  How do property actions differ for various mitigation programs? 
+  + How do building structure types differ for various mitigation programs?
+  + How do foundation types differ for various mitigation programs?
+  + Which states have received the most funding on mitigation programs?
+  + How has the average actual amount amount paid to the property owner for mitigation efforts changed over the years?
+  + How will the number of mitigation projects change over the next 3 years?
+  + How does the number of mitigation programs vary across different states?
+  + How does the number of mitigation programs vary across different counties?
+  + How has the number of mitigation programs changed over the years?
+  + How are property actions distributed?
 
 + **Contribution statement**: ([default](doc/a_note_on_contributions.md)) All team members contributed equally in all stages of this project. All team members approve our work presented in this GitHub repository including this contributions statement. 
 
