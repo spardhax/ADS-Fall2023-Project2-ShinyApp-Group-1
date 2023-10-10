@@ -1,0 +1,46 @@
+---
+title: "HazardMitigationAssistanceMitigatedProperties Data Cleaning"
+output: html_document
+date: "2023-09-29"
+---
+
+```{r}
+library('dplyr')
+```
+Read Data
+```{r}
+df<-read.csv("C:/Users/36187/Downloads/HazardMitigationAssistanceMitigatedProperties.csv") 
+```
+
+Set "" or "N/A" values inside orignal dataset as na
+
+```{r}
+df <- df %>%
+  mutate_all(funs(ifelse(is.na(.) | . == ""|.== "N/A", NA, .)))
+```
+Set invalid zip code (not 5 digits) as na
+
+```{r}
+attach(df)
+```
+
+```{r}
+for(i in 1:nrow(df)){
+  if (grepl("^\\d{5}$",df$zip[i])){
+    df$zip[i] = df$zip[i]
+  }else{
+    df$zip[i] = NA
+  }
+}
+```
+
+
+Count # of Na in different columns
+```{r}
+na_count <- colSums(is.na(df))
+na_count
+```
+Write into csv.
+```{r}
+write.csv(df, file = "C:/Users/36187/Downloads/HazardMitigationAssistanceMitigatedProperties_cleaned.csv")
+```
