@@ -37,7 +37,7 @@ ui2 <- fluidPage(
       selectInput(
         "programAreaFilter2",  # Updated input ID
         "Select Program Area:",
-        choices = program_areas
+        choices = program_areas2
       )
     ),
     mainPanel(
