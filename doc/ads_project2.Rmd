@@ -3,8 +3,8 @@ title: "project2 data visualization"
 author: "Lia Cho, lc3683"
 date: "2023-10-06"
 output:
-  word_document: default
   html_document: default
+  word_document: default
   pdf_document: default
 ---
 
@@ -25,12 +25,17 @@ data_s = sqldf('SELECT LOWER(state) as state, count(*) as count FROM hma GROUP B
 state_map = map_data("state")
 merged_data_s = sqldf('SELECT cm.*, d.count FROM data_s d INNER JOIN state_map cm ON d.State = cm.region')
 
-ggplot(merged_data_s, aes(x = long, y = lat, group = group, fill = count)) +
+shm = ggplot(merged, aes(x = long, y = lat, group = group, fill = count)) +
   geom_polygon() +
-  scale_fill_gradient(low = "grey", high = "blue") +
-  labs(title = "State-Level Heatmap") +
+  scale_fill_gradient(low = "grey", high = "blue", 
+                      name = "Number of Occurances") +
+  labs(title = "State-Level Number of Occurances of Mitigation Programs") +
   theme_minimal()
+
+ggsave("stateheatmap.png", plot = shm, width = 18, height = 12)
 ```
+
+![enlarged photo of graph](stateheatmap.png)
 
 ```{r, county_heatmap, warning=FALSE, message=FALSE}
 library(maps)
@@ -38,14 +43,16 @@ data_c = sqldf('SELECT LOWER(state) as state, LOWER(county) as county, count(*) 
 county_map = map_data("county")
 merged_data_c = sqldf('SELECT cm.*, d.count FROM data_c d INNER JOIN county_map cm ON d.State = cm.region AND d.county = cm.subregion')
 
-ggplot(merged_data_c, aes(x = long, y = lat, group = group, fill = count)) +
+chm = ggplot(merged_data_c, aes(x = long, y = lat, group = group, fill = count)) +
   geom_polygon() +
   scale_fill_gradient(low = "grey", high = "blue") +
-  labs(title = "County-Level Heatmap") +
+  labs(title = "County-Level Number of Occurances of Mitigation Programs") +
   theme_minimal()
 
+ggsave("countyheatmap.png", plot = chm, width = 18, height = 12)
 ```
 
+![enlarged photo of graph](countyheatmap.png)
 
 ```{r, state_bargraph, warning=FALSE, message=FALSE}
 data_s = sqldf('SELECT LOWER(state) as state, count(*) as count FROM hma GROUP BY state')
