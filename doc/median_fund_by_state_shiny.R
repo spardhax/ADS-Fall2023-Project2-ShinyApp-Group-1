@@ -11,7 +11,6 @@ ui9 <- fluidPage(
   titlePanel("State Funding Plots"),
   sidebarLayout(
     sidebarPanel(
-      textInput("searchState", "Search State:", ""),
       selectInput("stateSelect", "Select State:", choices = sorted_states),
     ),
     mainPanel(
@@ -21,14 +20,6 @@ ui9 <- fluidPage(
 )
 
 server9 <- function(input, output, session) {
-  # Function to update the selected state based on search input
-  observe({
-    search_state <- input$searchState
-    if (search_state %in% states) {
-      updateSelectInput(session, "stateSelect", selected = search_state)
-    }
-  })
-  
   # Render the selected state's plot
   output$selectedStatePlot <- renderPlot({
     selected_state <- input$stateSelect
@@ -41,5 +32,3 @@ server9 <- function(input, output, session) {
     }
   })
 }
-
-shinyApp(ui9, server9)

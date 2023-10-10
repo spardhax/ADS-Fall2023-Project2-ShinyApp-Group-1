@@ -279,10 +279,10 @@ average_funding_per_year <- data %>%
   summarise(average_amount = median(actualAmountPaid, na.rm = TRUE))
 
 # filtering out rows with missing average_amount
-filtered_funding_per_year <- average_funding_per_year[!is.na(average_funding_per_year$average_amount),]
+#filtered_funding_per_year <- average_funding_per_year[!is.na(average_funding_per_year$average_amount),]
 
 # Plotting the time series without missing values
-med_fund_plots[["US"]]<- ggplot(filtered_funding_per_year, aes(x = programFy, y = average_amount)) +
+med_fund_plots[["US"]]<- ggplot(average_funding_per_year, aes(x = programFy, y = average_amount)) +
   geom_line() +
   labs(x = "Year", y = "Median Actual Amount Paid", title = "Median Funding Received by Project Per Year") +
   theme_minimal()
@@ -302,13 +302,18 @@ state_average_funding_per_year <- data %>%
   group_by(programFy, state) %>%
   summarise(average_amount = median(actualAmountPaid, na.rm = TRUE))
 
-filtered_state_funding_per_year <- 
+# filtered_state_funding_per_year <- 
   state_average_funding_per_year[!is.na(state_average_funding_per_year$average_amount),]
 
-states <- unique(filtered_state_funding_per_year$state)
+states <- unique(state_average_funding_per_year$state)
+
+state_average_funding_per_year$average_amount <- replace(
+  state_average_funding_per_year$average_amount,
+  is.na(state_average_funding_per_year$average_amount),
+  0)
 
 for(i in states){
-  state_avg <- filter(filtered_state_funding_per_year, state == i)
+  state_avg <- filter(state_average_funding_per_year, state == i)
   
   med_fund_plots[[i]] <- ggplot(state_avg, 
                                 aes(x = programFy, y = average_amount)) + 
@@ -319,5 +324,3 @@ for(i in states){
 }
 
 saveRDS(med_fund_plots, "../doc/med_fund_plots.rds")
-
-
