@@ -58,10 +58,11 @@ Following [suggestions](http://nicercode.github.io/blog/2013-04-05-projects/) by
 ```
 proj/
 ├── app/
-├── lib/
 ├── data/
 ├── doc/
-└── output/
+    ├── fig/
+├── lib/
+
 ```
 
 Please see each subfolder for a README file.
