@@ -1,38 +1,38 @@
 library(shiny)
 
-state_proj_count <- "doc/figs/prediction of disaster numbers.png"
+pred_disasters <- "../doc/figs/prediction of disaster numbers.png"
+pred_projects <- "../doc/figs/prediction of project numbers.png"
 
-state_fund_total <- "doc/figs/prediction of project numbers.png"
+image_names_pred <- c("Prediction of Disaster Numbers", 
+                 "Prediction of Project Numbers")
 
-image_names <- c("prediction of disaster numbers", 
-                 "prediction of project numbers")
-
-image_data <- data.frame(name = image_names, 
-                         path = c(state_proj_count, state_fund_total), 
-                         stringsAsFactors = FALSE)
+image_data_pred <- data.frame(
+  name = image_names_pred, 
+  path = c(pred_disasters, pred_projects), 
+  stringsAsFactors = FALSE
+)
 
 ui4 <- fluidPage(
-  titlePanel("Descriptive Maps and Property Action Totals"),
+  titlePanel("Future Predictions"),
   sidebarLayout(
     sidebarPanel(
-      selectInput("imageSelect", "Select an Image:", choices = image_data$name),
+      selectInput("imageSelectWidget1", "Select an Image:", 
+                  choices = image_data_pred$name),
     ),
     mainPanel(
-      imageOutput("selectedImage")
+      imageOutput("selectedImageWidget1")
     )
   )
 )
 
 server4 <- function(input, output) {
-  output$selectedImage <- renderImage({
-    selected_image <- input$imageSelect
+  output$selectedImageWidget1 <- renderImage({
+    selected_image_pred <- input$imageSelectWidget1
     
     # Get the file path for the selected image
-    selected_image_path <- image_data$path[image_data$name == selected_image]
+    selected_image_path_pred <- image_data_pred$path[image_data_pred$name == selected_image_pred]
     
     # Display the selected image
-    list(src = selected_image_path, width = "100%")
+    list(src = selected_image_path_pred, width = "100%")
   }, deleteFile = FALSE)
 }
-
-shinyApp(ui4, server4)

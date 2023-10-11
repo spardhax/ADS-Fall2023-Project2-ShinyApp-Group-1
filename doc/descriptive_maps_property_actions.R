@@ -38,5 +38,3 @@ server3 <- function(input, output) {
     list(src = selected_image_path, width = "100%")
   }, deleteFile = FALSE)
 }
-
-shinyApp(ui3, server3)
