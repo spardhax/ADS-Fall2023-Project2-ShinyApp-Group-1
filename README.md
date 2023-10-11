@@ -32,20 +32,26 @@ Term: Fall 2023
 
 + **Project summary**: We examined data from the [Hazard Mitigation Assistance Projects](https://www.fema.gov/openfema-data-page/hazard-mitigation-assistance-projects-v3) & [Hazard Mitigation Assistance Mitigated Properties](https://www.fema.gov/openfema-data-page/hazard-mitigation-assistance-mitigated-properties-v3) datasets. Our objective was to learn about the property actions taken in the US hazard mitigation projects. We looked at how these actions vary based on the type of hazard (floods/earthquakes/etc.), property foundation (slab on grade/elevation/etc.) and housing structure (residential/commercial/etc.). Additionally, we analyzed funding trends over the years and predicted changes in the number of projects. We also conducted a detailed state-wise analysis to gain localized insights. Our analysis aims to answer the following questions:-
 
-  +  How do property actions differ for various mitigation programs? 
+  + How do property actions differ for various mitigation programs? 
   + How do building structure types differ for various mitigation programs?
-  + How do foundation types differ for various mitigation programs?
   + Which states have received the most funding on mitigation programs?
-  + How has the average actual amount amount paid to the property owner for mitigation efforts changed over the years?
+  + How has the median actual amount amount paid to the property owner for mitigation efforts changed over the years?
   + How will the number of mitigation projects change over the next 3 years?
   + How does the number of mitigation programs vary across different states?
-  + How does the number of mitigation programs vary across different counties?
   + How has the number of mitigation programs changed over the years?
   + How are property actions distributed?
 
-+ **Contribution statement**: ([default](doc/a_note_on_contributions.md)) All team members contributed equally in all stages of this project. All team members approve our work presented in this GitHub repository including this contributions statement. 
++ **Contribution statement**: All members helped outline the app development process and goals.
+PS and CZ cleaned and organized the source data. SS created a map visualization, FEMA program
+breakdowns by property actions and structure types, and established baseline code for the median
+funding by state and year. LC produced a map visualization and projects by property action
+graphics. PS also executed and visualized the two future predictions. DL broke down the median
+funding by year to the state level and prepared each visualization for Shiny App use by creating
+RDS objects. DL and FG wrote the codes for the Shiny widgets and DL organized them into the 
+singular Shiny App. DL reconfigured the documents to successfully export to shinyapps.io. SS and 
+DL edited the main ReadMe file.
 
-Following [suggestions](http://nicercode.github.io/blog/2013-04-05-projects/) by [RICH FITZJOHN](http://nicercode.github.io/about/#Team) (@richfitz). This folder is orgarnized as follows.
+Following [suggestions](http://nicercode.github.io/blog/2013-04-05-projects/) by [RICH FITZJOHN](http://nicercode.github.io/about/#Team) (@richfitz). This folder is organized as follows.
 
 ```
 proj/
