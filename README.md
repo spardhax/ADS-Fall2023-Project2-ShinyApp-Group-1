@@ -30,7 +30,7 @@ Term: Fall 2023
 	+ Chencan Zou (cz2675)
  	+ Puqi Song (ps3387)
 
-+ **Project summary**: We examined data from the [Hazard Mitigation Assistance Projects](https://www.fema.gov/openfema-data-page/hazard-mitigation-assistance-projects-v3) & [Hazard Mitigation Assistance Mitigated Properties](https://www.fema.gov/openfema-data-page/hazard-mitigation-assistance-mitigated-properties-v3) datasets. Our objective was to learn about the property actions taken in the US hazard mitigation projects. We looked at how these actions vary based on the type of hazard (floods/earthquakes/etc.), property foundation (slab on grade/elevation/etc.) and housing structure (residential/commercial/etc.). Additionally, we analyzed funding trends over the years and predicted changes in the number of projects. We also conducted a detailed state-wise analysis to gain localized insights. Our analysis aims to answer the following questions:-
++ **Project summary**: We examined data from the [Hazard Mitigation Assistance Projects](https://www.fema.gov/openfema-data-page/hazard-mitigation-assistance-projects-v3) & [Hazard Mitigation Assistance Mitigated Properties](https://www.fema.gov/openfema-data-page/hazard-mitigation-assistance-mitigated-properties-v3) datasets. Our objective was to learn about the property actions taken in the US hazard mitigation projects. We looked at how these actions vary based on the type of hazard (floods/earthquakes/etc.) and housing structure (residential/commercial/etc.). Additionally, we analyzed funding trends over the years and predicted changes in the number of projects. We also conducted a detailed state-wise analysis to gain localized insights. Our analysis aims to answer the following questions:-
 
   + How do property actions differ for various mitigation programs? 
   + How do building structure types differ for various mitigation programs?
@@ -45,11 +45,11 @@ Term: Fall 2023
 PS and CZ cleaned and organized the source data. SS created a map visualization, FEMA program
 breakdowns by property actions and structure types, and established baseline code for the median
 funding by state and year. LC produced a map visualization and projects by property action
-graphics. PS also executed and visualized the two future predictions. DL broke down the median
-funding by year to the state level and prepared each visualization for Shiny App use by creating
-RDS objects. DL and FG wrote the codes for the Shiny widgets and DL organized them into the 
-singular Shiny App. DL reconfigured the documents to successfully export to shinyapps.io. SS and 
-DL edited the main ReadMe file.
+graphics. PS also executed and visualized the two future predictions. SS also formulated the
+business questions after looking at all data files. DL broke down the median funding by year to the
+state level and prepared each visualization for Shiny App use by creating RDS objects.
+DL and FG wrote the codes for the Shiny widgets and DL organized them into the singular Shiny App.
+DL reconfigured the documents to successfully export to shinyapps.io. SS and DL edited the main ReadMe file.
 
 Following [suggestions](http://nicercode.github.io/blog/2013-04-05-projects/) by [RICH FITZJOHN](http://nicercode.github.io/about/#Team) (@richfitz). This folder is organized as follows.
 
