@@ -1,6 +1,5 @@
 # Project 2: Shiny App Development
 
-### Code lib Folder
+### Figs Folder
 
-The lib directory contains various files with function definitions (but only function definitions - no code that actually runs).
-
+The figs directory contains the figures. This directory only contains generated files; that is, one should always be able to delete the contents and regenerate them.
