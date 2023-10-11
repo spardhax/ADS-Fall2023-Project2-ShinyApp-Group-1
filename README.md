@@ -19,8 +19,10 @@ The **learning goals** for this project is:
 *The above general statement about project 2 can be removed once you are finished with your project. It is optional.
 
 ##  Exploring Property Actions & Funding in Hazard Mitigation Projects in the US
-Term: Fall 2023
 
+[R Shiny App Link](https://dtdluce.shinyapps.io/FEMA_Hazard_Mitigation/)
+
+Term: Fall 2023
 + Team #1
 + Team members:
 	+ Spardha Sharma (ss6343)
