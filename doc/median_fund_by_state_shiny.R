@@ -1,7 +1,7 @@
 library(shiny)
 
 # Load your precomputed plots
-med_fund_plots <- readRDS("../doc/med_fund_plots.rds")
+med_fund_plots <- readRDS("doc/med_fund_plots.rds")
 states <- names(med_fund_plots)
 
 # Sort the state names alphabetically

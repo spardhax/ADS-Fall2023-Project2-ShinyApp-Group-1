@@ -3,7 +3,7 @@ library(ggplot2)
 
 # Load the RDS object containing the list of preprocessed graphs
 
-preprocessed_graphs <- readRDS("../doc/prop_vs_prog_plots.rds")
+preprocessed_graphs <- readRDS("doc/prop_vs_prog_plots.rds")
 
 # Sample data (replace with your own data)
 program_areas <- names(preprocessed_graphs)

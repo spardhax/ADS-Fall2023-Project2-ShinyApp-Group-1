@@ -1,14 +1,16 @@
 library(shiny)
 
-source("../doc/prop_vs_prog_plots_shiny.R", local = TRUE)
+source("doc/prop_vs_prog_plots_shiny.R", local = TRUE)
 
-source("../doc/prop_vs_struc_plots_shiny.R", local = TRUE)
+source("doc/prop_vs_prog_plots_shiny.R")
 
-source("../doc/median_fund_by_state_shiny.R", local = TRUE)
+source("doc/prop_vs_struc_plots_shiny.R", local = TRUE)
 
-source("../doc/descriptive_maps_property_actions.R", local = TRUE)
+source("doc/median_fund_by_state_shiny.R", local = TRUE)
 
-source("../doc/prediction_plot_app.R", local = TRUE)
+source("doc/descriptive_maps_property_actions.R", local = TRUE)
+
+source("doc/prediction_plot_app.R", local = TRUE)
 
 ui <- fluidPage(
   titlePanel("FEMA Hazard Mitigation Projects: A Breakdown Analysis"),
@@ -30,3 +32,5 @@ server <- function(input, output) {
 }
 
 shinyApp(ui, server)
+
+rsconnect::deployApp(appPrimaryDoc = "app/Group 1 Final Shiny App.R")

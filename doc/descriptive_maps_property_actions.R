@@ -1,10 +1,10 @@
 library(shiny)
 
-state_proj_count <- "../doc/figs/stateheatmap.png"
+state_proj_count <- "doc/figs/stateheatmap.png"
 
-state_fund_total <- "../doc/figs/statewise_mitigated_properties.jpeg"
+state_fund_total <- "doc/figs/statewise_mitigated_properties.jpeg"
 
-prop_actions <- "../doc/figs/prop_barplot.png"
+prop_actions <- "doc/figs/prop_barplot.png"
 
 image_names <- c("Number of Projects by State", 
                  "Total Program Funding by State", 

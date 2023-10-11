@@ -1,7 +1,7 @@
 library(shiny)
 
-pred_disasters <- "../doc/figs/prediction of disaster numbers.png"
-pred_projects <- "../doc/figs/prediction of project numbers.png"
+pred_disasters <- "doc/figs/prediction of disaster numbers.png"
+pred_projects <- "doc/figs/prediction of project numbers.png"
 
 image_names_pred <- c("Prediction of Disaster Numbers", 
                  "Prediction of Project Numbers")

@@ -1,0 +1,10 @@
+name: FEMA_Hazard_Mitigation
+title: FEMA_Hazard_Mitigation
+username: dtdluce
+account: dtdluce
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 10154283
+bundleId: 7787784
+url: https://dtdluce.shinyapps.io/FEMA_Hazard_Mitigation/
+version: 1
