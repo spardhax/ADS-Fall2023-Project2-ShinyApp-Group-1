@@ -46,7 +46,7 @@ PS and CZ cleaned and organized the source data. SS created a map visualization,
 breakdowns by property actions and structure types, and established baseline code for the median
 funding by state and year. LC produced a map visualization and projects by property action
 graphics. PS also executed and visualized the two future predictions. SS also formulated the
-business questions after looking at all data files. DL broke down the median funding by year to the
+business questions and project summary after looking at all data files. DL broke down the median funding by year to the
 state level and prepared each visualization for Shiny App use by creating RDS objects.
 DL and FG wrote the codes for the Shiny widgets and DL organized them into the singular Shiny App.
 DL reconfigured the documents to successfully export to shinyapps.io. SS, DL, and PS edited the ReadMe files, and LC proofread these files.
